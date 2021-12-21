@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/HomepageBody.module.css";
 import axios from "axios";
+import Link from "next/link";
 
 export default function HomepageBody() {
   const [activeRadio, setActiveRadio] = useState("books");
@@ -9,6 +10,7 @@ export default function HomepageBody() {
 
   function handleRadioChange(e) {
     setActiveRadio(e.target.value);
+    setBookList([]);
   }
 
   function handleInputChange(e) {
@@ -16,16 +18,17 @@ export default function HomepageBody() {
   }
 
   useEffect(() => {
-    if (searchQuery.length)
-      axios
-        .get(
-          process.env.NEXT_PUBLIC_SERVER_URL + "/books/getBooks/" + searchQuery
-        )
-        .then((res) => {
-          setBookList(res.data.data);
-          console.log(res.data.data);
-        });
-    else {
+    const url =
+      activeRadio === "books"
+        ? `${process.env.NEXT_PUBLIC_SERVER_URL}/books/getBooks/${searchQuery}`
+        : `${process.env.NEXT_PUBLIC_SERVER_URL}/authors/getAuthors/${searchQuery}`;
+
+    if (searchQuery.length) {
+      axios.get(url).then((res) => {
+        setBookList(res.data.data);
+        console.log(res.data.data);
+      });
+    } else {
       setBookList([]);
     }
   }, [searchQuery]);
@@ -58,9 +61,17 @@ export default function HomepageBody() {
       </div>
       <div className={styles.autoComplete}>
         {bookList.slice(0, 10).map((book) => (
-          <div className={styles.bookItem} key={book.id}>
-            {book.title}
-          </div>
+          <Link
+            href={
+              activeRadio === "books"
+                ? `/books/${book.id}`
+                : `/authors/${book.id}`
+            }
+          >
+            <div className={styles.bookItem} key={book.id}>
+              {book.title}
+            </div>
+          </Link>
         ))}
       </div>
     </div>
