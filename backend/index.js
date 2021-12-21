@@ -10,6 +10,7 @@ const session = require("express-session");
 const { Librarians } = require("./models/librarians");
 const { Bookworms } = require("./models/bookworms");
 const cookieParser = require("cookie-parser");
+const dotenv = require("dotenv").config();
 
 // initialise express instance
 const app = express();
