@@ -25,6 +25,30 @@ router.get("/getBooks", (req, res) => {
   });
 });
 
+router.get("/getBooks/:query", (req, res) => {
+  const query = req.params.query;
+
+  Books.find({ title: new RegExp(query, "i") }, (err, result) => {
+    if (err)
+      return res.send({
+        status: 500,
+        message: "An error occurred when attempting to get the list of books",
+      });
+
+    if (!result.length)
+      return res.send({
+        status: 404,
+        message: "There are currently no books",
+      });
+
+    res.send({
+      status: 200,
+      message: "Sucessfully fetched list of books",
+      data: result,
+    });
+  });
+});
+
 router.get("/getBookDetails/:book_id", (req, res) => {
   const book_id = req.params.book_id;
 
