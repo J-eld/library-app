@@ -24,7 +24,7 @@ const myLibrarian = new Librarian({
 });
 
 async function insertLibrarian() {
-  await Librarian.insertMany(myLibrarian);
+  await myLibrarian.save();
   mongoose.connection.close();
 }
 
