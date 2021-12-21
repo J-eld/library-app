@@ -3,20 +3,26 @@ const { Books } = require("../models/books");
 const { BorrowedBooks } = require("../models/borrowedBooks");
 const router = express.Router();
 
-router.get("/getBooks", async (req, res) => {
-  try {
-    const books = await Books.find();
+router.get("/getBooks", (req, res) => {
+  Books.find({}, (err, result) => {
+    if (err)
+      return res.send({
+        status: 500,
+        message: "An error occurred when attempting to get the list of books",
+      });
+
+    if (!result.length)
+      return res.send({
+        status: 404,
+        message: "There are currently no books",
+      });
+
     res.send({
       status: 200,
       message: "Sucessfully fetched list of books",
-      data: books,
+      data: result,
     });
-  } catch (err) {
-    return res.send({
-      status: 500,
-      message: "An error occurred when attempting to get the list of books",
-    });
-  }
+  });
 });
 
 router.get("/getBookDetails/:book_id", (req, res) => {
