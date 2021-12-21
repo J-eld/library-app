@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/getBooks", async (req, res) => {
   try {
-    const books = await Books.find().limit(100);
+    const books = await Books.find();
     res.send({
       status: 200,
       message: "Sucessfully fetched list of books",
