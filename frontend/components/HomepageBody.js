@@ -60,7 +60,7 @@ export default function HomepageBody() {
         />
       </div>
       <div className={styles.autoComplete}>
-        {bookList.slice(0, 10).map((book) => (
+        {bookList?.slice(0, 10).map((book) => (
           <Link
             href={
               activeRadio === "books"

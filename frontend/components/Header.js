@@ -7,10 +7,12 @@ import Link from "next/link";
 export default function Header() {
   return (
     <div className={styles.root}>
-      <div className={styles.title}>
-        <Image src={Book} />
-        <h1 className={styles.titleText}>Library App</h1>
-      </div>
+      <Link href="/">
+        <div className={styles.title}>
+          <Image src={Book} />
+          <h1 className={styles.titleText}>Library App</h1>
+        </div>
+      </Link>
       <div className={styles.loginSignupButtons}>
         <Link href="/login">
           <button className="btn">Login</button>

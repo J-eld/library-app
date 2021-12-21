@@ -10,6 +10,10 @@
   gap: 1rem;
 }
 
+.title:hover {
+  cursor: pointer;
+}
+
 .titleText {
   color: #333;
 }
