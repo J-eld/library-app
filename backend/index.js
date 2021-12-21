@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const bookRoutes = require("./routes/books");
 
 // initialise express instance
 const app = express();
@@ -9,8 +10,6 @@ app.use(cors());
 app.use(express.json());
 
 // routes
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
+app.use("/books", bookRoutes);
 
 app.listen(4000);
