@@ -1,5 +1,5 @@
 const express = require("express");
-const { BorrowedBooks } = require("../models/borrowed_books");
+const { BorrowedBooks } = require("../models/borrowedBooks");
 const router = express.Router();
 
 router.delete("/removeBookFromList/:book_id", (req, res) => {

@@ -7,6 +7,6 @@ const bookwormSchema = new mongoose.Schema({
   password: String,
 });
 
-const Bookworm = mongoose.model("bookworms", bookwormSchema);
+const Bookworms = mongoose.model("bookworms", bookwormSchema);
 
-module.exports = { Bookworm, bookwormSchema };
+module.exports = { Bookworms, bookwormSchema };

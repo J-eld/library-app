@@ -1,6 +1,6 @@
 const express = require("express");
 const { Books } = require("../models/books");
-const { BorrowedBooks } = require("../models/borrowed_books");
+const { BorrowedBooks } = require("../models/borrowedBooks");
 const router = express.Router();
 
 router.get("/getBooks", async (req, res) => {
