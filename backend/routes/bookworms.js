@@ -27,6 +27,23 @@ router.get("/getBookworms", (req, res) => {
   });
 });
 
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err)
+      res.send({
+        status: 500,
+        message: "An error occurred when attempting to log in",
+      });
+    if (!user) res.send({ status: 404, message: "User does not exist" });
+    else {
+      req.login(user, (err) => {
+        if (err) throw err;
+        res.redirect("/isLoggedIn");
+      });
+    }
+  })(req, res, next);
+});
+
 router.post("/borrowBook", async (req, res) => {
   const book_id = req.body.book_id;
   const bookworm_id = req.body.bookworm_id;
