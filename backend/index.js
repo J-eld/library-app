@@ -3,6 +3,7 @@ const cors = require("cors");
 const bookRoutes = require("./routes/books");
 const authorRoutes = require("./routes/authors");
 const librarianRoutes = require("./routes/librarians");
+const bookwormRoutes = require("./routes/bookworms");
 
 // initialise express instance
 const app = express();
@@ -15,5 +16,6 @@ app.use(express.json());
 app.use("/books", bookRoutes);
 app.use("/authors", authorRoutes);
 app.use("/librarians", librarianRoutes);
+app.use("/bookworms", bookwormRoutes);
 
 app.listen(4000);
