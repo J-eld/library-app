@@ -1,6 +1,25 @@
 const express = require("express");
 const { BorrowedBooks } = require("../models/borrowedBooks");
+const { Librarians } = require("../models/librarians");
 const router = express.Router();
+const passport = require("../config/passport.config.js");
+
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err)
+      res.send({
+        status: 500,
+        message: "An error occurred when attempting to log in",
+      });
+    if (!user) res.send({ status: 404, message: "User does not exist" });
+    else {
+      req.login(user, (err) => {
+        if (err) throw err;
+        res.redirect("/isLoggedIn");
+      });
+    }
+  })(req, res, next);
+});
 
 router.delete("/removeBookFromList/:book_id", (req, res) => {
   const book_id = req.params.book_id;
