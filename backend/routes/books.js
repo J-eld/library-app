@@ -38,7 +38,7 @@ router.get("/getBooks/:query", (req, res) => {
     if (!result.length)
       return res.send({
         status: 404,
-        message: "There are currently no books",
+        message: "No books match the query provided",
       });
 
     res.send({
