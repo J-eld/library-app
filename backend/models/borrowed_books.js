@@ -7,6 +7,6 @@ const borrwedBooksSchema = new mongoose.Schema({
   borrowed_by: bookwormSchema,
 });
 
-const BorrowedBooks = mongoose.model("bookworms", borrwedBooksSchema);
+const BorrowedBooks = mongoose.model("borrowedBooks", borrwedBooksSchema);
 
 module.exports = { BorrowedBooks, borrwedBooksSchema };
