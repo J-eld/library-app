@@ -1,0 +1,41 @@
+.root {
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.searchTitle {
+  text-align: center;
+}
+
+.bigSearch {
+  font-size: 24px;
+}
+
+.radioGroup {
+  margin-bottom: 1rem;
+}
+
+.autoComplete {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  max-height: 500px;
+  text-align: center;
+}
+
+.bookItem {
+  padding: 0.1rem 1rem;
+}
+
+.bookItem:hover {
+  cursor: pointer;
+  background: lightgrey;
+}
